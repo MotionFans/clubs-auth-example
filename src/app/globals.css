@@ -105,3 +105,170 @@ a {
     color-scheme: dark;
   }
 }
+
+.settingsHousing {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+h1 {
+  font: caption;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h2 {
+  font: caption;
+}
+
+h3 {
+  font: caption;
+}
+
+p {
+  font: caption;
+}
+
+.secondaryElement {
+  background-color: #292828;
+}
+
+.thirdElement {
+  background-color: #383838;
+}
+
+.div {
+  background-color: #0e0d0d;
+}
+
+.secondaryDiv {
+  background-color: #202224;
+}
+
+.thirdDiv {
+  background-color: #151516;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+.button {
+  color: white;
+  font-weight: bold;
+  background-color: #4a4a4a;
+  width: fit-content;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
+}
+
+button {
+  color: white;
+  font-weight: bold;
+  border: none;
+  background-color: #383838;
+}
+
+.button img {
+  width: 22px;
+}
+
+.buttonBackground {
+  background: #383838;
+}
+
+.shade {
+  /* background-color: #303132; */
+  box-shadow: 0 1px 2px 0 rgb(0, 0, 0);
+}
+
+.greyText {
+  color: #c2c2c2;
+}
+
+.watermark {
+  position: relative;
+}
+
+.watermark::after {
+  content: "Confidential Watermark";
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 10px;
+  opacity: 0.05; /* Adjust the opacity to make it more/less visible */
+  pointer-events: none; /* Ensure the watermark doesn't interfere with clicks */
+}
+
+.innerSettings {
+  position: relative;
+  margin-top: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-margin: 5px;
+  animation: fadeIn 0.5s;
+}
+
+Input {
+  position: relative;
+  color: white;
+  /* background-color: #17191a; */
+  background-color: #303132;
+  box-shadow: 0 1px 2px 0 rgb(0, 0, 0);
+  /* width: 400px; */
+  padding: 12px;
+  border-radius: 5px;
+  border-width: 1.2px;
+  height: 20px;
+  outline: none;
+  border: none;
+}
+
+input[type="range"] {
+  color: transparent;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+
+.hover:hover {
+  background-color: rgba(184, 184, 184, 0.384);
+  filter: brightness(0.9);
+}
+
+.div {
+  background-color: #0e0d0d;
+}
+
+.loginWindow {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+  justify-content: center;
+  max-width: 95%;
+  border-radius: 3px;
+  width: 380px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 10px 0 black;
+  row-gap: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

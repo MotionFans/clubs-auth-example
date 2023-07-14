@@ -1,95 +1,50 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+import './css/auth-methods.css';
+import './globals.css'
+import { useState, useEffect, useRef } from 'react';
 
-export default function Home() {
+function ClubAuthMethods() {
+  const [errorMessage, setErrorMessage] = useState({ times: 0, message: null });
+  const [state, changeState] = useState({ type: null, data: {} });
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  async function login() {
+    await fetch("https://api.staticfans.com/login", {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json"
+			},
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+		})
+		.then(res => res.json())
+		.then(data => {
+      if (data.ok == true) {
+        const params = new URLSearchParams({ data: data.data, state: params.get("state") });
+        window.location.href = `https://staticfans.motionfans.club/club/grant?${params.toString()}`;
+      } else if (data.error == true) {
+        alert(data.message);
+      } else {
+        alert("Something went wrong.");
+      }
+		})
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <div className="AppLogin div">
+      {errorMessage.message != null && <p style={{marginBottom:10}} className="errorMessage">{errorMessage.message} [{errorMessage.times}]</p>}
+      {state.type == null && <div className="loginWindow secondaryDiv">
+        <h1 style={{ fontSize: 20, alignSelf: "flex-start", marginBottom: 0 }}>Login Example</h1>
+        <p className='greyText'>THIS IS AN EXAMPLE PAGE, NOT A REAL LOGIN. The security here is for demostration purposes, you should not use this in production. Valid credentials are "example" as username and "pass" as password. Anything else will trigger an invalid event.</p>
+        <input value={username} onChange={(e) => { setUsername(e.target.value); }} className='loginExampleInput input' placeholder='Username' style={{ marginBottom: 0 }}/>
+        <input value={password} onChange={(e) => { setPassword(e.target.value); }} className='loginExampleInput input' placeholder='Password' style={{ marginTop: -4 }}/>
+        <button onClick={() => { login(); }} style={{ width: "100%" }} className='button loginButton'>Login</button>
+      </div>}
+    </div>
+  );
 }
+
+export default ClubAuthMethods;
