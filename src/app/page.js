@@ -10,6 +10,13 @@ function ClubAuthMethods() {
   const [password, setPassword] = useState(null);
 
   async function login() {
+    let urlParams = {};
+    if (typeof document !== 'undefined') {
+      const queryParams = new URLSearchParams(document.location.search);
+      console.log("QUERYPARAMS", queryParams);
+      urlParams = queryParams;
+    }
+
     await fetch("https://api.staticfans.com/login", {
 			method: 'POST',
 			headers: {
@@ -23,7 +30,7 @@ function ClubAuthMethods() {
 		.then(res => res.json())
 		.then(data => {
       if (data.ok == true) {
-        const params = new URLSearchParams({ data: data.data, state: params.get("state") });
+        const params = new URLSearchParams({ data: data.data, state: urlParams["state"] });
         window.location.href = `https://staticfans.motionfans.club/club/grant?${params.toString()}`;
       } else if (data.error == true) {
         alert(data.message);
