@@ -30,7 +30,7 @@ function ClubAuthMethods() {
 		.then(res => res.json())
 		.then(data => {
       if (data.ok == true) {
-        const params = new URLSearchParams({ data: JSON.stringify(data.data), state: urlParams["state"] });
+        const params = new URLSearchParams({ data: JSON.stringify(data.data), state: urlParams.get("state") });
         window.location.href = `https://staticfans.motionfans.club/club/grant?${params.toString()}`;
       } else if (data.error == true) {
         alert(data.message);
