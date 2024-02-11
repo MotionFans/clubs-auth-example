@@ -30,8 +30,8 @@ function ClubAuthMethods() {
 		.then(res => res.json())
 		.then(data => {
       if (data.ok == true) {
-        const params = new URLSearchParams({ data: JSON.stringify(data.data), state: urlParams.get("state"), authentication_method_id: "XAVOTIXCCHZQFRCWVCOZ1689736955427" });
-        window.location.href = `https://staticfans.motionfans.club/club/grant?${params.toString()}`;
+        const params = new URLSearchParams({ data: JSON.stringify(data.data), state: urlParams.get("state"), authentication_method_id: "PNGYMJYSMFOHBWMLHUQW1707171251249" });
+        window.location.href = `https://oracularhades.motionfans.club/club/grant?${params.toString()}`;
       } else if (data.error == true) {
         alert(data.message);
       } else {
